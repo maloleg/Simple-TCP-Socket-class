@@ -14,9 +14,17 @@
 class Socket{
 private:
     int sockfd;
+
 protected:
     bool good;
+    int sock = sockfd;
+
 public:
+
+    int SockGet(){
+        return sockfd;
+    }
+
     Socket& Read(char* Text, std::streamsize TextSize){
         do
         {
@@ -61,9 +69,14 @@ public:
 };
 
 Socket& operator >> (Socket& sock, std::string& Text){
-    
-    sock.Read((char*) Text, Text.size());
+    char *cstr = new char[Text.length() + 1];
+    strcpy(cstr, Text.c_str());
+// do stuff
+
+    sock.Read(cstr, Text.length() + 1);
+    delete [] cstr;
     return sock;
+
 }
 
 Socket& operator << (Socket& sock, std::string& TextStream){
@@ -71,12 +84,13 @@ Socket& operator << (Socket& sock, std::string& TextStream){
     return sock;
 }
 
-class ClientSocket : Socket{
+class ClientSocket : public Socket{
 private:
     struct sockaddr_in peer;
 public:
+
     ClientSocket(){
-        if((sockfd=socket(AF_INET, SOCK_STREAM, 0)) == -1){
+        if((sock=socket(AF_INET, SOCK_STREAM, 0)) == -1){
             perror("socket()");
             exit(1);
         }
@@ -87,26 +101,35 @@ public:
         peer.sin_addr.s_addr = inet_addr("127.0.0.1");
     }
 
+    ClientSocket(int SockD, int port, char* ip){
+        sock = SockD;
+
+        memset(&peer, 0x00, sizeof(struct sockaddr_in));
+        peer.sin_family      = AF_INET;
+        peer.sin_port        = htons(port);
+        peer.sin_addr.s_addr = inet_addr(ip);
+    }
+
     void Connect(){
-        if (connect( sockfd, (struct sockaddr*)&peer, sizeof(struct sockaddr_in)) == -1){
+        if (connect(sock, (struct sockaddr*)&peer, sizeof(struct sockaddr_in)) == -1){
             perror("connect()");
             exit(1);
         }
     }
 };
 
-class ServerSocket : Socket{
+class ServerSocket : public Socket{
 private:
     struct sockaddr_in self;
 public:
     void Bind(){
-        if( bind( sockfd, (struct sockaddr*)&self, sizeof(struct sockaddr_in)) == -1){
+        if( bind(sock, (struct sockaddr*)&self, sizeof(struct sockaddr_in)) == -1){
             perror("bind()");
             exit(1);
         }
     }
     void Listen(){
-        if( listen(sockfd, QUEUE) == -1 ){
+        if(listen(sock, QUEUE) == -1){
             perror("listen()");
             exit(1);
         }
@@ -114,7 +137,15 @@ public:
     ClientSocket Accept();
 };
 
-int main() {
-    std::cout << "Hello, World!" << std::endl;
-    return 0;
-}
+//int main() {
+//    //std::cout << "Hello, World!" << std::endl;
+//    ClientSocket a;
+//    ServerSocket b;
+//
+//    while (1) {
+//        a.Connect();
+//        a.Write("Hello world!", 12);
+//    }
+//
+//    return 0;
+//}
