@@ -27,8 +27,8 @@
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/oleg/CLionProjects/ht10/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="ht10">
-				<Option output="/home/oleg/CLionProjects/ht10/cmake-build-debug/ht10" prefix_auto="0" extension_auto="0"/>
+			<Target title="Server">
+				<Option output="/home/oleg/CLionProjects/ht10/cmake-build-debug/Server" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/oleg/CLionProjects/ht10/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -44,14 +44,14 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/oleg/CLionProjects/ht10/cmake-build-debug/Makefile&quot;  VERBOSE=1 ht10"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/oleg/CLionProjects/ht10/cmake-build-debug/Makefile&quot;  VERBOSE=1 Server"/>
 					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/oleg/CLionProjects/ht10/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j8 -f &quot;/home/oleg/CLionProjects/ht10/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/oleg/CLionProjects/ht10/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
-			<Target title="ht10/fast">
-				<Option output="/home/oleg/CLionProjects/ht10/cmake-build-debug/ht10" prefix_auto="0" extension_auto="0"/>
+			<Target title="Server/fast">
+				<Option output="/home/oleg/CLionProjects/ht10/cmake-build-debug/Server" prefix_auto="0" extension_auto="0"/>
 				<Option working_dir="/home/oleg/CLionProjects/ht10/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
@@ -67,7 +67,7 @@
 					<Add directory="/usr/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="/usr/bin/make -j8 -f &quot;/home/oleg/CLionProjects/ht10/cmake-build-debug/Makefile&quot;  VERBOSE=1 ht10/fast"/>
+					<Build command="/usr/bin/make -j8 -f &quot;/home/oleg/CLionProjects/ht10/cmake-build-debug/Makefile&quot;  VERBOSE=1 Server/fast"/>
 					<CompileFile command="/usr/bin/make -j8 -f &quot;/home/oleg/CLionProjects/ht10/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
 					<Clean command="/usr/bin/make -j8 -f &quot;/home/oleg/CLionProjects/ht10/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 					<DistClean command="/usr/bin/make -j8 -f &quot;/home/oleg/CLionProjects/ht10/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
@@ -84,11 +84,8 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/oleg/CLionProjects/ht10/main.cpp">
-			<Option target="ht10"/>
-		</Unit>
 		<Unit filename="/home/oleg/CLionProjects/ht10/server.cpp">
-			<Option target="ht10"/>
+			<Option target="Server"/>
 		</Unit>
 		<Unit filename="/home/oleg/CLionProjects/ht10/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>

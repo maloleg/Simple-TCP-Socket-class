@@ -1,9 +1,12 @@
+#ifndef MAIN_CPP
+#define MAIN_CPP
+
+
 #include <iostream>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <string.h>
 #include <arpa/inet.h>
-#include <sys/types.h>
 
 #define SIZE 1024
 /* порты [0,1023] - системные, [1024,65535] доступны пользователю */
@@ -21,10 +24,6 @@ protected:
 
 public:
 
-    int SockGet(){
-        return sockfd;
-    }
-
     Socket& Read(char* Text, std::streamsize TextSize){
         do
         {
@@ -36,7 +35,7 @@ public:
 
             /* чтение данных */
             for (int i = 0; i < TextSize; i++) {
-                if ((ret = recv(sockfd, data, 0, 0)) == -1) {
+                if ((ret = recv(sockfd, data, 1, 0)) == -1) {
                     perror("recv()");
                     break;
                 }
@@ -44,10 +43,9 @@ public:
                     Text += data[0];
                 }
             }
-
-            printf("CLIENT: received %d bytes of data=%s\n", ret, Text);
         }
         while(0);
+        return dynamic_cast<Socket&> (*this);
     }
     Socket& Write(const char* a, std::streamsize b){
             /* отправка данных по установленному каналу связи */
@@ -56,6 +54,7 @@ public:
                     perror("send()");
                 }
             }
+            return dynamic_cast<Socket&> (*this);
     }
     friend Socket& operator >> (Socket&, std::string&);
 
@@ -149,3 +148,4 @@ public:
 //
 //    return 0;
 //}
+#endif //MAIN_CPP
