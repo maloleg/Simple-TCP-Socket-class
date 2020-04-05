@@ -84,7 +84,7 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/oleg/CLionProjects/ht10/main.cpp">
+		<Unit filename="/home/oleg/CLionProjects/ht10/mainServer.cpp">
 			<Option target="Server"/>
 		</Unit>
 		<Unit filename="/home/oleg/CLionProjects/ht10/CMakeLists.txt">

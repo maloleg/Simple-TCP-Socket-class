@@ -123,32 +123,32 @@ Server/fast:
 	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/build
 .PHONY : Server/fast
 
-main.o: main.cpp.o
+mainServer.o: mainServer.cpp.o
 
-.PHONY : main.o
+.PHONY : mainServer.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/main.cpp.o
-.PHONY : main.cpp.o
+mainServer.cpp.o:
+	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/mainServer.cpp.o
+.PHONY : mainServer.cpp.o
 
-main.i: main.cpp.i
+mainServer.i: mainServer.cpp.i
 
-.PHONY : main.i
+.PHONY : mainServer.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/main.cpp.i
-.PHONY : main.cpp.i
+mainServer.cpp.i:
+	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/mainServer.cpp.i
+.PHONY : mainServer.cpp.i
 
-main.s: main.cpp.s
+mainServer.s: mainServer.cpp.s
 
-.PHONY : main.s
+.PHONY : mainServer.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/main.cpp.s
-.PHONY : main.cpp.s
+mainServer.cpp.s:
+	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/mainServer.cpp.s
+.PHONY : mainServer.cpp.s
 
 # Help Target
 help:
@@ -159,9 +159,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... Server"
 	@echo "... edit_cache"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... mainServer.o"
+	@echo "... mainServer.i"
+	@echo "... mainServer.s"
 .PHONY : help
 
 
