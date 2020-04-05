@@ -3,4 +3,4 @@ project(ht10)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Server server.cpp)
+add_executable(Server main.cpp)

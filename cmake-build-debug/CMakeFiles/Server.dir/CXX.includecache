@@ -6,3 +6,15 @@
 
 #IncludeRegexTransform: 
 
+/home/oleg/CLionProjects/ht10/main.cpp
+iostream
+-
+sys/socket.h
+-
+netinet/in.h
+-
+string.h
+-
+arpa/inet.h
+-
+

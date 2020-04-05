@@ -24,6 +24,10 @@ protected:
 
 public:
 
+    int DGetter(){return sockfd;}
+
+    void DSetter(int s){sockfd = s;}
+
     Socket& Read(char* Text, std::streamsize TextSize){
         do
         {
@@ -83,25 +87,13 @@ Socket& operator << (Socket& sock, std::string& TextStream){
     return sock;
 }
 
-class ClientSocket : public Socket{
+class ClientSocket : Socket{
 private:
     struct sockaddr_in peer;
 public:
 
-    ClientSocket(){
-        if((sock=socket(AF_INET, SOCK_STREAM, 0)) == -1){
-            perror("socket()");
-            exit(1);
-        }
-
-        memset(&peer, 0x00, sizeof(struct sockaddr_in));
-        peer.sin_family      = AF_INET;
-        peer.sin_port        = htons(PORT);
-        peer.sin_addr.s_addr = inet_addr("127.0.0.1");
-    }
-
     ClientSocket(int SockD, int port, char* ip){
-        sock = SockD;
+        DSetter(SockD);
 
         memset(&peer, 0x00, sizeof(struct sockaddr_in));
         peer.sin_family      = AF_INET;
@@ -109,8 +101,15 @@ public:
         peer.sin_addr.s_addr = inet_addr(ip);
     }
 
+    ClientSocket(){
+        memset(&peer, 0x00, sizeof(struct sockaddr_in));
+        peer.sin_family      = AF_INET;
+        peer.sin_port        = htons(PORT);
+        peer.sin_addr.s_addr = inet_addr("127.0.0.1");
+    }
+
     void Connect(){
-        if (connect(sock, (struct sockaddr*)&peer, sizeof(struct sockaddr_in)) == -1){
+        if (connect(DGetter(), (struct sockaddr*)&peer, sizeof(struct sockaddr_in)) == -1){
             perror("connect()");
             exit(1);
         }
@@ -122,30 +121,44 @@ private:
     struct sockaddr_in self;
 public:
     void Bind(){
-        if( bind(sock, (struct sockaddr*)&self, sizeof(struct sockaddr_in)) == -1){
+        if(bind(DGetter(), (struct sockaddr*)&self, sizeof(struct sockaddr_in)) == -1){
             perror("bind()");
             exit(1);
         }
     }
     void Listen(){
-        if(listen(sock, QUEUE) == -1){
+        if(listen(DGetter(), QUEUE) == -1){
             perror("listen()");
             exit(1);
         }
     }
-    ClientSocket Accept();
+    ClientSocket Accept(){
+        socklen_t addrlen = sizeof(struct sockaddr_in);
+        int cli_sock;
+
+        if((cli_sock = accept(DGetter(), (struct sockaddr*)&self, &addrlen)) == -1)
+        {
+            perror("accept()");
+            exit(1);
+        }
+
+        return ClientSocket(cli_sock, PORT, "127.0.0.1");
+
+    }
 };
 
-//int main() {
-//    //std::cout << "Hello, World!" << std::endl;
-//    ClientSocket a;
-//    ServerSocket b;
-//
-//    while (1) {
-//        a.Connect();
-//        a.Write("Hello world!", 12);
-//    }
-//
-//    return 0;
-//}
+int main() {
+    //std::cout << "Hello, World!" << std::endl;
+    ClientSocket a;
+    ServerSocket b;
+
+    a.Connect();
+
+    while (1) {
+
+        a.Write("Hello world!", 12);
+    }
+
+    return 0;
+}
 #endif //MAIN_CPP
