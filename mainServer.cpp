@@ -81,18 +81,12 @@ Socket &Socket::Write(const char *a, std::streamsize b) {
     return dynamic_cast<Socket&> (*this);
 }
 
-void Socket::Shutdown() {
-    if (shutdown(sockfd, SHUT_RDWR) == -1){
-        perror("shutdown()");
-    }
-}
-
 void Socket::DSetter(int s) {sockfd = s;}
 
 int Socket::DGetter() {return sockfd;}
 
 void Socket::Shutdown() {
-    if( shutdown(sockfd, SHUT_RDWR) == -1 )
+    if(shutdown(sockfd, SHUT_RDWR) == -1 )
     {
         perror("shutdown()");
     }
@@ -190,9 +184,17 @@ ClientSocket ServerSocket::Accept() {
 }
 
 int main() {
-    ClientSocket a(3490, "194.58.102.54");
+    ServerSocket a();
 
-    a.Connect();
+    a().Bind();
+    a().Listen();
+
+    while (1){
+        a().Accept();
+        a >> "I really didn't get, why we should return reference to a class with methods Write and Read.\nAnd if we do so, how we should use it?\nAlso how should we do an abstract class without making any method pure virtual?";
+
+        a.Shutdown();
+    }
 
     std::cout << "I really didn't get, why we should return reference to a class with methods Write and Read.\nAnd if we do so, how we should use it?\nAlso how should we do an abstract class without making any method pure virtual?";
 
