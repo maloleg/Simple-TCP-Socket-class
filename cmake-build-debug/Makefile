@@ -123,32 +123,32 @@ Server/fast:
 	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/build
 .PHONY : Server/fast
 
-main.o: main.cpp.o
+Socket.o: Socket.cpp.o
 
-.PHONY : main.o
+.PHONY : Socket.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/main.cpp.o
-.PHONY : main.cpp.o
+Socket.cpp.o:
+	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/Socket.cpp.o
+.PHONY : Socket.cpp.o
 
-main.i: main.cpp.i
+Socket.i: Socket.cpp.i
 
-.PHONY : main.i
+.PHONY : Socket.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/main.cpp.i
-.PHONY : main.cpp.i
+Socket.cpp.i:
+	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/Socket.cpp.i
+.PHONY : Socket.cpp.i
 
-main.s: main.cpp.s
+Socket.s: Socket.cpp.s
 
-.PHONY : main.s
+.PHONY : Socket.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/main.cpp.s
-.PHONY : main.cpp.s
+Socket.cpp.s:
+	$(MAKE) -f CMakeFiles/Server.dir/build.make CMakeFiles/Server.dir/Socket.cpp.s
+.PHONY : Socket.cpp.s
 
 # Help Target
 help:
@@ -159,9 +159,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... Server"
 	@echo "... edit_cache"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... Socket.o"
+	@echo "... Socket.i"
+	@echo "... Socket.s"
 .PHONY : help
 
 

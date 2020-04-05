@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/oleg/CLionProjects/ht10/main.cpp
+/home/oleg/CLionProjects/ht10/Socket class.h
 iostream
 -
 sys/socket.h
@@ -17,4 +17,8 @@ string.h
 -
 arpa/inet.h
 -
+
+/home/oleg/CLionProjects/ht10/Socket.cpp
+Socket class.h
+/home/oleg/CLionProjects/ht10/Socket class.h
 

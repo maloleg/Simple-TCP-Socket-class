@@ -1,4 +1,4 @@
-#include "main.cpp"
+#include "Socket.cpp"
 
 int main(){
     ServerSocket a;
